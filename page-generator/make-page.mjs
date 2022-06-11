@@ -4,7 +4,7 @@ import fs from 'fs';
 
 console.log("Building page and frames");
 
-const indexPath = `/Users/alan/workshop/html-random-pattern.alanwsmith.com/site/index.html`;
+const indexPath = `/Users/alan/workshop/html-random-pattern.alanwsmith.com/site/pattern.html`;
 const frameDir = `/Users/alan/workshop/html-random-pattern.alanwsmith.com/site/frames`;
 
 const indexTemplate = fs.readFileSync(`index-template.html`, `utf-8`);
@@ -16,7 +16,7 @@ for (let frameOption = 1; frameOption <= frameOptions; frameOption ++) {
     const framePath = `${frameDir}/${frameOption}.html`;
     const color = Math.floor(Math.random()*16777215).toString(16);
     const nextFrame = (frameOption + 1) === frameOptions ? 1 : (frameOption + 1);
-    const timeout = (Math.random() *  7).toFixed(2) + 0.5;
+    const timeout = (Math.random() *  8).toFixed(2) + 0.5;
     const framePage = frameTemplate
           .replace('COLOR', color)
           .replace('TIMEOUT', timeout)
@@ -24,7 +24,7 @@ for (let frameOption = 1; frameOption <= frameOptions; frameOption ++) {
     fs.writeFileSync(framePath, framePage);
 }
 
-const frameCount = 300;
+const frameCount = 102;
 const frames = [];
 
 for (let frameNum = 1; frameNum <= frameCount; frameNum ++) {
