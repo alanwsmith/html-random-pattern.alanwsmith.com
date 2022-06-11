@@ -37,4 +37,3 @@ for (let frameNum = 1; frameNum <= frameCount; frameNum ++) {
 fs.writeFileSync(indexPath, indexTemplate.replace('FRAMES', frames.join('')));
 
 
-
