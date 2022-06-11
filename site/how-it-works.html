@@ -83,15 +83,14 @@
       <br />
 
       <center>
-          <font color="#ffffff">Home Page</font> - 
-          <a href="/how-it-works.html">How it works</a> -
+          <a href="/">Home Page</a> - 
+          <font color="#ffffff">How it works</font> -
           <a href="https://www.alanwsmith.com/">My Main Site</a> -
           <a href="https://podcast.alanwsmith.com/">My Podcast</a>
           <br />
           <br />
           <hr width="300" />
       </center>
-
 
       <br />
       <br />
@@ -101,51 +100,59 @@
                   <td>
                       <div>
                       <font color="#ffffff" size="4">
-                          This site is part of a set of experiments 
-                          building web pages without CSS, JavaScript, or
-                          &lt;img&gt; tags. In this piece, the idea is to
-                          generate random color patterns. 
-                          <br /><br />
+                          The pattern is created by calling 102 iframes
+                          inside a single table cell with a width set to
+                          700 pixels via the deprecated `width` attribute
+                          <br />
+                          <br />
                       </font>
                       </div>
+
                       <div>
                           <font color="#ffffff" size="4">
-                              IMPORTANT: 
+                              Each iframe is loaded with a random pick
+                              from one of twenty possible pages ordered
+                              from 1 to 20
                           </font>
+                          <br />
+                          <br />
                       </div>
-                      <ol>
-                          <li>
-                          <font color="#ffffff" size="4">
-                              The color swatches flash when changing. I
-                              wouldn't describe it as dramatic, but I'm
-                              not sensitive to that. 
-                          </font>
-                          </li>
-                          <li>
-                              <br />
-                              <font color="#ffffff" size="4">
-                              The pages may crash your browser. As of June 2022,
-                              they work fine on my modern mac use either Chrome
-                              or Firefox, but they start locking up Safari after a couple
-                              seconds.
-                              </font>
-                          </li>
-                          <li>
-                              <br />
-                              <font color="#ffffff" size="4">
-                                  You're back button probably won't work. You'll
-                                  have to click a link, go to another page
-                                  directly, or just close the page to move
-                                  away from it.
-                              </font>
-                          </li>
-                      </ol>
+
+                      <div>
+                      <font color="#ffffff" size="4">
+                          Each of the twenty pages was statically generated
+                          with a random color background and a random interval
+                          to wait before using a meta tag redirect to move to
+                          the next page in the order
+                      </font>
+                      <br />
+                      <br />
+                      </div>
+
                       <div>
                           <font color="#ffffff" size="4">
-                              If you're cool with all of that, 
-                              <a href="pattern.html">click here to start the show</a>
+                              Said another way, each tile is playing the
+                              same sequence of colors at the same cadence as
+                              all the other tiles. The only difference between
+                              them is which of the twenty possible positions they
+                              start at (plus a little drift in load timing)
                           </font>
+                          <br />
+                          <br />
                       </div>
+
+                      <div>
+                          <font color="#ffffff" size="4">
+                              So, the pattern in pseudo-random but it's the same
+                              each time the page is loaded. It's a bit like a
+                              <a href="https://en.wikipedia.org/wiki/One-time_pad">one-time pad</a>
+                              being used over and over again. (At least, until I
+                              regenerate the site with a new set of random output.)
+                          </font>
+                          <br />
+                          <br />
+                      </div>
+
                   </td>
               </tr>
           </table>
