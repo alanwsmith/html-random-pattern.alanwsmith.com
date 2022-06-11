@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 
+
+// NOTE: This is being copied over to the main
+// page generation script. once it's there this
+// can be deleted . 
+
 import fs from 'fs';
 
 console.log("Building frames");

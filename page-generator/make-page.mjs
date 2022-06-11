@@ -2,98 +2,49 @@
 
 import fs from 'fs';
 
-console.log("Building page");
+console.log("Building page and frames");
 
-const filePath = `/Users/alan/workshop/html-random-pattern.alanwsmith.com/site/index.html`;
+const indexPath = `/Users/alan/workshop/html-random-pattern.alanwsmith.com/site/index.html`;
+const frameDir = `/Users/alan/workshop/html-random-pattern.alanwsmith.com/site/frames`;
 
-const page = (params) => {
-    return `
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+const indexTemplate = fs.readFileSync(`index-template.html`, `utf-8`);
+const frameTemplate = fs.readFileSync(`frame-template.html`, `utf-8`);
 
-    <title>HTML Only "Random" Pattern - by alan w. smith</title>
-    <meta property="og:title" content="HTML Only 'Random' Pattern - by alan w. smith" />
-    <meta name="twitter:title" content="HTML Only 'Random' Pattern - by alan w. smith" />
+const frameOptions = 20;
 
-    <meta property="og:url" content="https://html-random-pattern.alanwsmith.com/" />
+for (let frameOption = 1; frameOption <= frameOptions; frameOption ++) {
+    const framePath = `${frameDir}/${frameOption}.html`;
+    const color = Math.floor(Math.random()*16777215).toString(16);
+    const nextFrame = (frameOption + 1) === frameOptions ? 1 : (frameOption + 1);
+    const timeout = (Math.random() *  7).toFixed(2) + 0.5;
+    const framePage = frameTemplate
+          .replace('COLOR', color)
+          .replace('TIMEOUT', timeout)
+          .replace('NEXTFRAME', nextFrame);
+    fs.writeFileSync(framePath, framePage);
+}
 
-    <meta name="description" content="An experiment in making a web page without css, javascript, or images" />
-    <meta property="og:description" content="An experiment in making a web page without css, javascript, or images" />
+const frameCount = 300;
+const frames = [];
 
-    <meta
-      property="og:image"
-      content="https://html-random-pattern.alanwsmith.com/og-images/main.png"
-    />
-    <meta
-      name="twitter:image"
-      content="https://html-random-pattern.alanwsmith.com/og-images/main.png"
-    />
+for (let frameNum = 1; frameNum <= frameCount; frameNum ++) {
+    const startFrame = Math.floor(Math.random() * frameOptions) + 1;
+    frames.push(
+        `<iframe width="40" height="40" frameborder="0" src="/frames/${startFrame}.html"></iframe>`
+    );
+}
 
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@theidofalan" />
+fs.writeFileSync(indexPath, indexTemplate.replace('FRAMES', frames.join('')));
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicons/16x16.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicons/32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="96x96"
-      href="/favicons/96x96.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="128x128"
-      href="/favicons/128x128.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="196x196"
-      href="/favicons/196x196.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="228x228"
-      href="/favicons/228x228.png"
-    />
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="152x152"
-      href="/favicons/152x152.png"
-    />
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="167x167"
-      href="/favicons/167x167.png"
-    />
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="180x180"
-      href="/favicons/180x180.png"
-    />
-  </head>
-  <body bgcolor="#bbbbbb">
-${frameTags}
-</body>
-</html>
-`;
-};
+
+
+
+
+
+
+
+
+
 
 
 // const rows = [];
@@ -109,19 +60,41 @@ ${frameTags}
 
 
 
-const frames = [];
-
-for (let frameNum = 1; frameNum <= 400; frameNum ++ ) {
-    const frameIndex = Math.floor(Math.random() * 100) + 1;
-    frames.push(
-        `<iframe width="40" height="40" frameborder="1" src="/frames/${frameIndex}.html"></iframe>`
-    );
-}
-
-const frameTags = frames.join('');
+// const frames = [];
+// for (let frameNum = 1; frameNum <= 400; frameNum ++ ) {
+//     const frameIndex = Math.floor(Math.random() * 100) + 1;
+//     frames.push(
+//         `<iframe width="40" height="40" frameborder="1" src="/frames/${frameIndex}.html"></iframe>`
+//     );
+// }
+// const frameTags = frames.join('');
 
 
 
-fs.writeFileSync(filePath, page({ frameTags: frameTags }));
+// fs.writeFileSync(filePath, page({ frameTags: frameTags }));
+// console.log("Process complete");
 
-console.log("Process complete");
+
+// console.log("Building frames");
+// const maxFrames = 1000;
+// const outputDir = `/Users/alan/workshop/html-random-pattern.alanwsmith.com/site/frames`;
+
+// const frame = (params) => {
+//     return `<!DOCTYPE html><html lang="en"><head>` +
+//         `<meta http-equiv="refresh" content="${params.timeout};url=/frames/${params.nextFrame}.html" />` +
+//         `<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />` +
+//         `</head><body bgcolor="#${params.color}">&nbsp;</body></html>`;
+// };
+
+// for (let i = 1; i <= maxFrames; i++) {
+//     console.log(`- Frame: ${i}`);
+//     const filePath = `${outputDir}/${i}.html`;
+//     const color = Math.floor(Math.random()*16777215).toString(16);
+//     const timeout = (Math.random() *  4).toFixed(2) + 0.5;
+//     const nextFrame = (i === maxFrames ? 1 : i + 1);
+//     fs.writeFileSync(filePath, frame({
+//         color: color,
+//         nextFrame: nextFrame,
+//         timeout: timeout
+//     }));
+// }
