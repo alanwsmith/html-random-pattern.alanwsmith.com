@@ -16,7 +16,7 @@ for (let frameOption = 1; frameOption <= frameOptions; frameOption ++) {
     const framePath = `${frameDir}/${frameOption}.html`;
     const color = Math.floor(Math.random()*16777215).toString(16);
     const nextFrame = (frameOption + 1) >= frameOptions ? 1 : (frameOption + 1);
-    const timeout = (Math.random() *  8).toFixed(2) + 0.5;
+    const timeout = (Math.random() *  12).toFixed(2) + 0.7;
     const framePage = frameTemplate
           .replace('COLOR', color)
           .replace('TIMEOUT', timeout)
